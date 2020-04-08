@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
-    <common @entryItem="entryItem" path="home"/>
+  <div class="home" >
+    <common path="home"/>
+    <img src="~assets/img/1-4.png"  @click="entryItem" class="btn_img">
   </div>
 </template>
 
@@ -30,6 +31,12 @@
     width: 100vw;
     height: 100vh;
   }
-
+  .btn_img{
+    position: absolute;
+    left: 50%;
+    top: 350px;
+    width: 30vw;
+    transform: translateX(-50%);
+  }
   
 </style>

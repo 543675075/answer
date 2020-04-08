@@ -4,7 +4,8 @@
       <div class="center-img" v-if="path=='home'"></div>
       <div class="topic" v-else>
         <ul class="topic-list">
-          <li>{{content[itemNum-1].topic_name}}</li>
+          <li>{{content[itemNum-1].topic_name}}:</li>
+          <li>{{content[itemNum-1].topic_text}}</li>
           <li v-for="(item,index) in content[itemNum-1].topic_answer" class="topic-item" 
               @click="choose(index,item.topic_num)">
             <span class="topic-options" :class="{active:chooseNum==index}">{{topicOptions(index)}}</span>
@@ -18,8 +19,8 @@
       </div>
     </div>
     <div class="btn">
-      <img src="~assets/img/1-4.png" v-if="path=='home'" @click="entryItem">
-      <img src="~assets/img/2-2.png" v-else>
+      <img src="~assets/img/2-2.png" @click="nextTopic" v-if="itemNum<content.length">
+      <img src="~assets/img/3-1.png" v-else @click="submit">
     </div>
   </div>
 </template>
@@ -57,8 +58,27 @@
       ]),
 
     methods: {
-      entryItem() {
-        this.$emit("entryItem")
+      ...mapActions({add:"isLastTopic"}),
+      // 点击进入下一题
+      nextTopic(){
+        if(this.chooseNum !== null){
+          this.chooseNum = null
+          this.add(this.chooseId)
+        }else{
+          alert("请选择答案")
+        }
+      },
+      // 提交
+      submit(){
+        if(this.chooseNum !== null){
+          this.add(this.chooseId)
+          // 关闭定时器
+          clearInterval(this.timer)
+          //跳转到分数页面
+          this.$router.replace("score")
+        }else{
+          alert("请选择答案")
+        }
       },
       // active是否为活跃状态
       choose(index,id){
