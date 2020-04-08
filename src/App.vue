@@ -8,6 +8,5 @@
   #app{
     width: 100vw;
     height: 100vh;
-    background: url(~assets/img/1-1.jpg) center/cover;
   }
 </style>

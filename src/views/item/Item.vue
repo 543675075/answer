@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <common @entryItem="entryItem" path="home"/>
+  <div class='item'>
+    <common></common>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 <script>
   import Common from 'components/Common'
   export default {
-    name: 'Home',
+    name: 'Item',
     components: {
       Common
     },
@@ -18,18 +18,12 @@
 
       };
     },
-    methods: {
-      entryItem(){
-        this.$router.replace("/item")
-      }
-    },
+
   }
 </script>
 <style lang='less' scoped>
-  .home{
-    width: 100vw;
-    height: 100vh;
+  .item{
+    width: 100%;
+    height: 100%;
   }
-
-  
 </style>
